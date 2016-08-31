@@ -21,6 +21,10 @@ require 'random_data'
    )
  end
  
+ #5 Find the unique post and comment and if it does not exist, create it. 
+ Post.find_or_create_by(title: "Best Post", body: "Custom Body")
+ Comment.find_or_create_by(body: "What an interesting Post")
+ 
  puts "Seed finished"
  puts "#{Post.count} posts created"
  puts "#{Comment.count} comments created"
