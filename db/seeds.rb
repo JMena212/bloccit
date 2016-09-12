@@ -1,5 +1,7 @@
 require 'random_data'
 
+Question.destroy_all
+
  # Create Posts
  50.times do
  # #1

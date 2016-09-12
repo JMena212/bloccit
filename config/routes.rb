@@ -18,7 +18,7 @@ Rails.application.routes.draw do
  #We'll review the precise URIs created in a moment.
    resources :posts
    
-   resources :question
+   resources :questions
 
    get 'about' => 'welcome#about'
    
