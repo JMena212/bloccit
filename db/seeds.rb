@@ -14,8 +14,9 @@ require 'random_data'
  20.times do
    SponsoredPost.create!(
      topic:  topics.sample,
-     title:  "SponsoredPost"  + RandomData.random_sentence,
-     body:   RandomData.random_paragraph
+     title:  "Sponsored Post " + RandomData.random_sentence,
+     body:   RandomData.random_paragraph,
+     price:  99
    )
  end
 
