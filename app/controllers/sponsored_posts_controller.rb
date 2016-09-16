@@ -9,7 +9,7 @@ class SponsoredPostsController < ApplicationController
   end
 
   def edit
-     @post = Post.find(params[:id])
+     @sponsored_post = SponsoredPost.find(params[:id])
   end
   
   
