@@ -1,9 +1,12 @@
 class User < ActiveRecord::Base
 # #1 This  will capitalize first and last names and make sure there is space separating first and last.
-   before_save {self.name = name.split.capitalize.join(" ") if name.present?} 
+   before_save {self.name = name.split.map { |name| name.capitalize}.join(" ") if name.present?} 
    
 # #2
    before_save { self.email = email.downcase if email.present? }
+   
+   
+ 
 
  # #3
    validates :name, length: { minimum: 1, maximum: 100 }, presence: true
