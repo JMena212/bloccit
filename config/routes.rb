@@ -14,6 +14,8 @@ Rails.application.routes.draw do
    
    
    root 'welcome#index'
+   
+   post 'users/confirm', to: "users#confirm"
 
 end
 

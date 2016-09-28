@@ -4,6 +4,9 @@ class UsersController < ApplicationController
      @user = User.new
    end
    
+   
+   
+   
     def create
  # #9
      @user = User.new
@@ -22,4 +25,11 @@ class UsersController < ApplicationController
      end
    end
    
+   
+   def confirm
+     @user = User.new
+     @user.name = params[:user][:name]
+     @user.email = params[:user][:email]
+   end
+       
 end
