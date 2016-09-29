@@ -4,4 +4,5 @@
 <p> Email: <%= @user.email %> </p>
 
 <%= button_to "Yes", {controller: "users", action: "create", params: params}, class: 'btn btn-success' %>
-<%= button_to "No", {controller: "users", action: "new", method: :get, params: params}, class: 'btn btn-success' %>
+ <%#= button_to "No", {controller: "users", action: "new", method: :get, params: params}, class: 'btn btn-success' %>
+<%= link_to 'Cancel', new_user_path, class: 'btn btn-warning' %> 
