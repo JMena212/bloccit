@@ -59,7 +59,5 @@ RSpec.describe SessionsController, type: :controller do
        expect(flash[:notice]).to be_present
      end
    end
-   
-   
 end
 
