@@ -3,12 +3,14 @@ require 'rails_helper'
 include SessionsHelper
 
 RSpec.describe PostsController, type: :controller do
- let(:my_user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "helloworld") }
- let(:my_topic) { Topic.create!(name:  RandomData.random_sentence, description: RandomData.random_paragraph) }
- # #13
- let(:my_post) { my_topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: my_user) }
+  let(:my_user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "helloworld") }
+  let(:my_topic) { Topic.create!(name:  RandomData.random_sentence, description: RandomData.random_paragraph) }
+  let(:my_post) { my_topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: my_user) }
 
-  context "guest user" do
+
+
+ # #5
+   context "guest user" do
  # #6
      describe "GET show" do
        it "returns http success" do
@@ -60,19 +62,14 @@ RSpec.describe PostsController, type: :controller do
        end
      end
  
-     describe "DELETE destroy" do
+ describe "DELETE destroy" do
        it "returns http redirect" do
          delete :destroy, topic_id: my_topic.id, id: my_post.id
          expect(response).to have_http_status(:redirect)
        end
      end
    end
-   
-    # #13
-     context "signed-in user" do
-     before do
-       create_session(my_user)
-     end
+
 
  describe "PUT update" do
      it "updates post with expected attributes" do
@@ -121,6 +118,12 @@ RSpec.describe PostsController, type: :controller do
        expect(post_instance.body).to eq my_post.body
      end
    end
+   
+      # #13
+ context "signed-in user" do
+     before do
+       create_session(my_user)
+  end
 
  describe "GET show" do
      it "returns http success" do
@@ -141,7 +144,7 @@ RSpec.describe PostsController, type: :controller do
      end
    end
 
-describe "DELETE destroy" do
+    describe "DELETE destroy" do
      it "deletes the post" do
        delete :destroy, topic_id: my_topic.id, id: my_post.id
 
@@ -157,11 +160,11 @@ describe "DELETE destroy" do
      end
    end
 
-describe "GET new" do
+    describe "GET new" do
       it "returns http success" do
          get :new, topic_id: my_topic.id
         expect(response).to have_http_status(:success)
-      end
+    end
  
  # #2
       it "renders the #new view" do

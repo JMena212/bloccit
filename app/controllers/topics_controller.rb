@@ -4,36 +4,36 @@ class TopicsController < ApplicationController
     end
     
     def new
-        @topic = Topic.new
+      @topic = Topic.new
     end
     
     def create
       @topic = Topic.new(topic_params)
       
-     if @topic.save
+      if @topic.save
        flash[:notice] = "Topic was saved successfully."
        redirect_to @topic
-     else
+      else
        flash.now[:alert] = "Error creating topic. Please try again."
        render :new
-     end
+      end
     end
     
     def show
-        @topic = Topic.find(params[:id])
+      @topic = Topic.find(params[:id])
     end
     
     def update
-       @topic = Topic.find(params[:id])
-       @topic.assign_attributes(topic_params)
+      @topic = Topic.find(params[:id])
+      @topic.assign_attributes(topic_params)
  
-     if @topic.save
+      if @topic.save
         flash[:notice] = "Topic was updated successfully."
         redirect_to @topic
-     else
+      else
         flash.now[:alert] = "Error saving topic. Please try again."
         render :edit
-     end
+      end
     end
 
     

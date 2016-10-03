@@ -31,18 +31,9 @@ class PostsController < ApplicationController
 
   
    def create
+     @topic = Topic.find(params[:topic_id])
      @post = @topic.posts.build(post_params)
      @post.user = current_user
- # #10
-     if @post.save
- # #11
-       flash[:notice] = "Post was saved successfully."
-       redirect_to [@topic, @post]
-     else
- # #12
-       flash.now[:alert] = "There was an error saving the post. Please try again."
-       render :new
-     end
    end
    
    
