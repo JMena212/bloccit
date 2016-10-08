@@ -14,6 +14,12 @@ Rails.application.routes.draw do
    resources :sessions, only: [:new, :create, :destroy]
    
    root 'welcome#index'
+ 
+ # #4
+   resources :posts, only: [] do
+ # #5
+   resources :comments, only: [:create, :destroy]
+   end
 
 end
 
