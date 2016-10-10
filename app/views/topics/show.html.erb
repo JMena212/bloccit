@@ -10,6 +10,14 @@
        <%= render partial: "labels/list", locals: { labels: @topic.labels } %>
        <br />
        <%= @topic.description %>
+       <div>
+       <h3> TOPIC Comments</h3>
+       <%= render @topic.comments %>
+       </div>
+        <% if current_user %>
+ <!-- #20 -->
+       <%= render 'comments/form2', comment: Comment.new, topic: @topic %>
+     <% end %>
      </p>
  <!-- #10 -->
      <% @topic.posts.each do |post| %>
@@ -17,6 +25,7 @@
          <div class="media-body">
            <h4 class="media-heading">
               <%= link_to post.title, topic_post_path(@topic, post) %>
+               <div>
               <%= render partial: "labels/list", locals: { labels: post.labels } %>
            </h4>
            <small>

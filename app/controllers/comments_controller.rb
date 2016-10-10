@@ -2,10 +2,13 @@ class CommentsController < ApplicationController
  # #10
    before_action :require_sign_in
    before_action :authorize_user, only: [:destroy]    
+   
    def create
  # #11
      @post = Post.find(params[:post_id])
      comment = @post.comments.new(comment_params)
+     @topic = Topic.find(params[:post_id])
+     comment = @topic.comments.new(comment_params)
      comment.user = current_user
  
      if comment.save
@@ -21,6 +24,8 @@ class CommentsController < ApplicationController
     
    def destroy
      @post = Post.find(params[:post_id])
+     @post = Topic.find(params[:post_id])
+     comment = @topic.comments.find(params[:id])
      comment = @post.comments.find(params[:id])
  
      if comment.destroy
