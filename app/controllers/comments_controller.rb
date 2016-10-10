@@ -5,10 +5,11 @@ class CommentsController < ApplicationController
    
    def create
  # #11
+    
+     @topic = Topic.find(params[:topic_id])
+     comment = @topic.comments.new(comment_params)
      @post = Post.find(params[:post_id])
      comment = @post.comments.new(comment_params)
-     @topic = Topic.find(params[:post_id])
-     comment = @topic.comments.new(comment_params)
      comment.user = current_user
  
      if comment.save
