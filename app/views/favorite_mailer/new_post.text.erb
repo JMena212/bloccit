@@ -1,8 +1,2 @@
-New post to "<%= @post.title %>"
- <%= "=" * (@post.title.length + 12) %>
- 
- By: <%= @post.user.name %>
- 
- <%= @post.body %>
- 
- Visit online at: <%= topic_post_url(@post.topic, @post, anchor: "post-#{@post.id}") %>
+ You favorited "<%= @post.title %>" <%=link_to "post", topic_post_url(@post.topic, @post) %> 
+ <%= link_to "View Post on site", topic_post_url(@post.topic, @post, anchor: "post-#{@post.id}") %>
