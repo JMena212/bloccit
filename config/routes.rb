@@ -1,29 +1,22 @@
 Rails.application.routes.draw do
-    resources :labels, only: [:show]
+  root 'welcome#index'
 
+  resources :labels, only: [:show]
 
- #1  we call the resources method and pass it a Symbol. 
- #This instructs Rails to create post routes for creating, updating, viewing, and deleting instances of Post. 
- #We'll review the precise URIs created in a moment.
-    resources :topics do
- # #34
-     resources :posts, except: [:index]
-     
-   end
+  resources :topics do
+    resources :posts, except: [:index]
+  end
 
-   get 'about' => 'welcome#about'
-   
-   resources :users, only: [:new, :create]
-   
-   resources :sessions, only: [:new, :create, :destroy]
-   
-   root 'welcome#index'
- 
- # #4
-   resources :posts, :topics, only: [] do
- # #5
-   resources :comments, only: [:create, :destroy]
-   end
+  resources :users, only: [:new, :create]
+  resources :sessions, only: [:new, :create, :destroy]
 
+  resources :posts, only: [] do
+    resources :comments, only: [:create, :destroy], module: :posts
+  end
+
+  resources :topics, only: [] do
+    resources :comments, only: [:create, :destroy], module: :topics
+  end
+
+  get 'about', to: 'welcome#about'
 end
-

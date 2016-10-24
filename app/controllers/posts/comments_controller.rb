@@ -1,11 +1,11 @@
-=beginclass CommentsController < ApplicationController
+class Posts::CommentsController < ApplicationController
  # #10
    before_action :require_sign_in
    before_action :authorize_user, only: [:destroy]
 
    def create
-     @topic = Topic.find(params[:topic_id])
-     comment = @topic.comments.new(comment_params)
+     @post = Post.find(params[:post_id])
+     comment = @post.comments.new(comment_params)
      comment.user = current_user
 
      if comment.save
@@ -13,7 +13,7 @@
      else
        flash[:alert] = "Comment failed to save."
      end
-     redirect_to @topic
+     redirect_to [@post.topic, @post]
    end
 
    def destroy
@@ -46,4 +46,3 @@
    end
 
 end
-=end

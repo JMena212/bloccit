@@ -1,4 +1,4 @@
-=beginclass CommentsController < ApplicationController
+class Topics::CommentsController < ApplicationController
  # #10
    before_action :require_sign_in
    before_action :authorize_user, only: [:destroy]
@@ -46,4 +46,3 @@
    end
 
 end
-=end
