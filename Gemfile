@@ -36,3 +36,4 @@ source 'https://rubygems.org'
  gem 'bcrypt'
  
  gem 'pry-rails', :group => :development
+ gem 'factory_girl_rails', '~> 4.0'
