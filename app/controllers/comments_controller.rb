@@ -6,16 +6,20 @@ class CommentsController < ApplicationController
  # #11
      @post = Post.find(params[:post_id])
      @comment = @post.comments.new(comment_params)
-     comment.user = current_user
+     @comment.user = current_user
+     @new_comment = Comment.new
  
-     if comment.save
+     if @comment.save
        flash[:notice] = "Comment saved successfully."
  # #12
-       redirect_to [@post.topic, @post]
      else
        flash[:alert] = "Comment failed to save."
  # #13
-       redirect_to [@post.topic, @post]
+     end
+     
+     respond_to do |format|
+       format.html
+       format.js
      end
    end
     
