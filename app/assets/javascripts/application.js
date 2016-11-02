@@ -15,3 +15,13 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
+
+// $(document).ready(function() {
+//   var converter = new showdown.Converter();
+
+//   var mdown = $('.comment-body').val();
+//   var html = converter.makeHtml(mdown);
+
+//   $('.comment-preview').html(html);
+// })
+

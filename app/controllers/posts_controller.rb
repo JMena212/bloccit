@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
-  
+
   before_action :require_sign_in, except: :show
   before_action :authorize_user, except: [:show, :new, :create]
-  
+
   def show
    # #19
      @post = Post.find(params[:id])
@@ -16,11 +16,11 @@ class PostsController < ApplicationController
   def edit
    @post = Post.find(params[:id])
   end
-  
+
   def update
       @post = Post.find(params[:id])
       @post.assign_attributes(post_params)
- 
+
      if @post.save
       @post.labels = Label.update_labels(params[:post][:labels])
        flash[:notice] = "Post was updated successfully."
@@ -31,12 +31,12 @@ class PostsController < ApplicationController
      end
   end
 
-  
+
    def create
      @topic = Topic.find(params[:topic_id])
      @post = @topic.posts.build(post_params)
      @post.user = current_user
-     
+
      if @post.save
       @post.labels = Label.update_labels(params[:post][:labels])
        flash[:notice] = "Post was saved successfully."
@@ -46,12 +46,12 @@ class PostsController < ApplicationController
        render :new
      end
    end
-  
-   
-   
+
+
+
    def destroy
      @post = Post.find(params[:id])
- 
+
  # #8
      if @post.destroy
        flash[:notice] = "\"#{@post.title}\" was deleted successfully."
@@ -61,13 +61,13 @@ class PostsController < ApplicationController
        render :show
      end
    end
-   
+
    private
- 
+
    def post_params
      params.require(:post).permit(:title, :body)
    end
-   
+
    def authorize_user
      post = Post.find(params[:id])
  # #11
