@@ -51,7 +51,7 @@ RSpec.describe User, type: :model do
      expect(known_user.avatar_url(48)).to eq(expected_gravatar)
      end
    end
- end
+ 
      
    describe "attributes" do
      it "should have name and email attributes" do
@@ -120,3 +120,4 @@ RSpec.describe User, type: :model do
        expect(user_with_invalid_email).to_not be_valid
      end
    end
+end
