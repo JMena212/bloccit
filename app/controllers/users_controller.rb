@@ -4,6 +4,12 @@ class UsersController < ApplicationController
      @user = User.new
    end
    
+   def update
+   end
+ 
+   def create
+   end
+   
     def create
  # #9
      @user = User.new
