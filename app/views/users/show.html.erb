@@ -20,8 +20,6 @@
    </div>
  </div>
  
- <h2>Posts</h2>
- <%= render @user.posts %>
- 
- <h2>Comments</h2>
- <%= render @user.comments %>
+
+ <%= render (@user.posts) || content_tag(:p, 'User does not have any posts') %>
+ <%= render (@user.comments) || content_tag(:p, 'User does not have any comments') %>
