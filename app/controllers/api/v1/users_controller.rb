@@ -26,6 +26,15 @@ class Api::V1::UsersController < Api::V1::BaseController
    end
  
    def create
+       user = User.new(user_params)
+ 
+ # #14
+     if user.valid?
+       user.save!
+       render json: user, status: 201
+     else
+       render json: { error: "User is invalid", status: 400 }, status: 400
+     end
    end
    
     private
