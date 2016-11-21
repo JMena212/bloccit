@@ -19,7 +19,6 @@ class User < ActiveRecord::Base
 
  # #6
    has_secure_password
-  
    enum role: [:member, :admin]
    
    def favorite_for(post)

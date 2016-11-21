@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-    let(:user) { create(:user) }
+   let(:user) { create(:user) }
    # Shoulda tests for name
   
    it { is_expected.to have_many(:posts) }
@@ -21,6 +21,27 @@ RSpec.describe User, type: :model do
    it { is_expected.to validate_presence_of(:password) }
    it { is_expected.to have_secure_password }
    it { is_expected.to validate_length_of(:password).is_at_least(6) }
+ 
+   describe "attributes" do
+     it "should have name and email attributes" do
+      expect(user).to have_attributes(name: user.name, email: user.email)
+     end
+     
+     it "responds to role" do
+       expect(user).to respond_to(:role)
+     end
+ 
+ # #2
+     it "responds to admin?" do
+       expect(user).to respond_to(:admin?)
+     end
+ 
+ # #3
+     it "responds to member?" do
+       expect(user).to respond_to(:member?)
+     end
+   end     
+ 
  
    describe "#favorite_for(post)" do
      before do
@@ -51,27 +72,8 @@ RSpec.describe User, type: :model do
      expect(known_user.avatar_url(48)).to eq(expected_gravatar)
      end
    end
- end
      
-   describe "attributes" do
-     it "should have name and email attributes" do
-      expect(user).to have_attributes(name: user.name, email: user.email)
-     end
-     
-     it "responds to role" do
-       expect(user).to respond_to(:role)
-     end
- 
- # #2
-     it "responds to admin?" do
-       expect(user).to respond_to(:admin?)
-     end
- 
- # #3
-     it "responds to member?" do
-       expect(user).to respond_to(:member?)
-     end
-   end
+  
 
    describe "roles" do
  # #4
@@ -120,3 +122,5 @@ RSpec.describe User, type: :model do
        expect(user_with_invalid_email).to_not be_valid
      end
    end
+end
+
