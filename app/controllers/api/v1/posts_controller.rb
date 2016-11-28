@@ -3,8 +3,10 @@ class Api::V1::PostsController < Api::V1::BaseController
    before_action :authenticate_user, except: [:index, :show]
    before_action :authorize_user, except: [:index, :show]
    
-    
-    
+  
+  
+   
+     
    def create
      topic = Topic.find(params[:topic_id])
      post = topic.posts.build(post_params)
@@ -16,6 +18,29 @@ class Api::V1::PostsController < Api::V1::BaseController
        render json: {error: "Post is invalid", status: 400}, status: 400
      end
    end
+    
+   def update
+     topic = Topic.find(params[:id])
+ 
+     if topic.post.update_attributes(topic_params)
+       render json: post, status: 200
+     else
+       render json: {error: "Topic update failed", status: 400}, status: 400
+     end
+   end
+ 
+    
+   def destroy
+     topic = Topic.find(params[:id])
+ 
+     if topic.post.destroy
+       render json: {message: "Post destroyed", status: 200}, status: 200
+     else
+       render json: {error: "Post destroy failed", status: 400}, status: 400
+     end
+   end
+   
+    
     
  private
    def post_params
