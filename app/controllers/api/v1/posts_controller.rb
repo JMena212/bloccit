@@ -3,9 +3,6 @@ class Api::V1::PostsController < Api::V1::BaseController
    before_action :authenticate_user, except: [:index, :show]
    before_action :authorize_user, except: [:index, :show]
    
-  
-  
-   
      
    def create
      topic = Topic.find(params[:topic_id])
@@ -22,10 +19,10 @@ class Api::V1::PostsController < Api::V1::BaseController
    def update
      topic = Topic.find(params[:id])
  
-     if topic.post.update_attributes(topic_params)
+     if topic.post.update_attributes(post_params)
        render json: post, status: 200
      else
-       render json: {error: "Topic update failed", status: 400}, status: 400
+       render json: {error: "Post update failed", status: 400}, status: 400
      end
    end
  
