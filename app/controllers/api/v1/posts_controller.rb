@@ -17,9 +17,10 @@ class Api::V1::PostsController < Api::V1::BaseController
    end
     
    def update
-     topic = Post.find(params[:id])
+     topic = Topic.find(params[:topic_id])
+     post = topic.posts.find(params[:id])
      
- 
+     
      if topic.post.update_attributes(post_params)
        render json: post, status: 200
      else
@@ -29,7 +30,8 @@ class Api::V1::PostsController < Api::V1::BaseController
  
     
    def destroy
-     topic = Post.find(params[:id])
+     topic = Topic.find(params[:topic_id])
+     post = topic.posts.find(params[:id])
  
      if topic.post.destroy
        render json: {message: "Post destroyed", status: 200}, status: 200
